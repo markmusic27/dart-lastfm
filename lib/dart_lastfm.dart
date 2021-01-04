@@ -1,7 +1,6 @@
 library dart_lastfm;
 
 import 'dart:convert';
-
 import 'package:dart_lastfm/models/stream.dart';
 import 'package:dart_lastfm/services/network.dart';
 import 'package:flutter/material.dart';
@@ -13,24 +12,22 @@ class LastFM {
 
   LastFM({@required this.key, @required this.username});
 
-  Future<String> _callData() async {
+  Future<StreamModel> fetchData() async {
     NetworkService networkService = NetworkService(
       endPoint:
-          "ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=$username&api_key=$key&format=json&limit=1",
+          "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=$username&api_key=$key&format=json&limit=1",
     );
 
-    return await networkService.retrieveCall();
-  }
+    String data = await networkService.retrieveCall();
 
-  Future<StreamModel> getData() async {
-    final String data = await _callData();
-
-    StreamModel model = StreamModel(
-      artist: jsonDecode(data)["recenttracks"]["tracks"][0]["artist"]["#text"],
-      coverArt: jsonDecode(data)["recenttracks"]["tracks"][0]["image"][3]
+    final StreamModel model = StreamModel(
+      artist: jsonDecode(data)["recenttracks"]["track"][0]["artist"]["#text"],
+      coverArt: jsonDecode(data)["recenttracks"]["track"][0]["image"][3]
           ["#text"],
+      name: jsonDecode(data)["recenttracks"]["track"][0]["name"],
+      url: jsonDecode(data)["recenttracks"]["track"][0]["url"],
     );
 
-    print(model);
+    return model;
   }
 }

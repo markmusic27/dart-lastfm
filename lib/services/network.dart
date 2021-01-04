@@ -6,7 +6,7 @@ class NetworkService {
   NetworkService({@required this.endPoint});
 
   Future<String> retrieveCall() async {
-    http.Response response = await http.get(endPoint);
+    http.Response response = await http.get(endPoint); // change
 
     if (response.statusCode == 200) {
       return response.body;
