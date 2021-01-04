@@ -1,16 +1,17 @@
 name: dart_lastfm
-description: A new Flutter package project.
+description: A Dart framework made for using and displaying real-time last.fm data.
 version: 0.0.1
-author:
+author: Mark Music
 homepage:
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.17.0"
+  sdk: '>=2.7.0 <3.0.0'
+  flutter: '>=1.17.0'
 
 dependencies:
   flutter:
     sdk: flutter
+  http: ^0.12.2
 
 dev_dependencies:
   flutter_test:
