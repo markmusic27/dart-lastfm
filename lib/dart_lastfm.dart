@@ -5,7 +5,6 @@ import 'package:dart_lastfm/models/stream.dart';
 import 'package:dart_lastfm/services/network.dart';
 import 'package:flutter/material.dart';
 
-/// A Calculator.
 class LastFM {
   final String username;
   final String key;
